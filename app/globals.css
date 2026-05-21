@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .prose a {
+    @apply text-primary hover:underline;
+  }
+  .affiliate-disclosure {
+    @apply text-xs text-gray-500 italic border-l-2 border-primary pl-3 my-6;
+  }
+  .prose table {
+    @apply w-full text-left border-collapse my-6 text-sm;
+  }
+  .prose thead {
+    @apply border-b-2 border-gray-300;
+  }
+  .prose th {
+    @apply py-3 px-4 font-semibold text-gray-900 bg-gray-50;
+  }
+  .prose td {
+    @apply py-3 px-4 border-b border-gray-200 text-gray-700;
+  }
+  .prose tbody tr:hover {
+    @apply bg-gray-50;
+  }
+}
