@@ -179,7 +179,8 @@ function applyTheme({ theme, variant, targetDir }) {
   if (!fs.existsSync(cssPath)) throw new Error(`Missing globals.css: ${cssPath}`)
 
   const tailwindOut = renderTemplate(fs.readFileSync(tmplPath, 'utf8'), values)
-  const cssOut = fs.readFileSync(cssPath, 'utf8')
+  // globals.css may contain {{accent}} / {{accentHover}} placeholders too.
+  const cssOut = renderTemplate(fs.readFileSync(cssPath, 'utf8'), values)
 
   const targetTailwind = path.join(targetDir, 'tailwind.config.ts')
   const targetCss = path.join(targetDir, 'app', 'globals.css')

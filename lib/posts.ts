@@ -28,6 +28,8 @@ export interface Post {
   keywords?: string[]
   noindex?: boolean
   category?: string
+  authorBio?: string
+  authorSocial?: string
 }
 
 export function getAllPosts(): Post[] {
@@ -67,6 +69,8 @@ export function getAllPosts(): Post[] {
             : [],
         noindex: data.noindex || false,
         category: data.category || '',
+        authorBio: data.authorBio || '',
+        authorSocial: data.authorSocial || '',
       }
     })
 
