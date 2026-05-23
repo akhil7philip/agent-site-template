@@ -23,15 +23,54 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* ASCII flow */}
+      {/* Process flow diagram */}
       <section className="mb-20">
-        <pre className="text-[11px] md:text-xs font-mono text-text-muted leading-tight overflow-x-auto whitespace-pre">
-{`    ┏━━━━━━━━━━━━━━━┓        ┏━━━━━━━━━━━━━━━┓        ┏━━━━━━━━━━━━━━━┓
-    ┃    research    ┃  ───▶  ┃     testing    ┃  ───▶  ┃     review     ┃
-    ┗━━━━━━━━━━━━━━━┛        ┗━━━━━━━━━━━━━━━┛        ┗━━━━━━━━━━━━━━━┛
-         shortlist               47+ cycles                  verdict
-`}
-        </pre>
+        <svg
+          viewBox="0 0 720 130"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full max-w-3xl mx-auto block"
+          role="img"
+          aria-label="Our process: research, then testing, then review"
+        >
+          <title>Our process: research → testing → review</title>
+
+          {/* Step numbers */}
+          <text x="110" y="18" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="10" fill="var(--color-text-muted)" opacity="0.6">01</text>
+          <text x="360" y="18" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="10" fill="var(--color-text-muted)" opacity="0.6">02</text>
+          <text x="610" y="18" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="10" fill="var(--color-text-muted)" opacity="0.6">03</text>
+
+          {/* Boxes */}
+          <rect x="20" y="30" width="180" height="50" rx="3"
+                fill="var(--color-bg-secondary)" stroke="var(--color-border)" strokeWidth="1" />
+          <rect x="270" y="30" width="180" height="50" rx="3"
+                fill="var(--color-bg-secondary)" stroke="var(--color-border)" strokeWidth="1" />
+          <rect x="520" y="30" width="180" height="50" rx="3"
+                fill="var(--color-bg-secondary)" stroke="var(--color-border)" strokeWidth="1" />
+
+          {/* Box labels */}
+          <text x="110" y="62" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="15"
+                fontWeight="500" fill="var(--color-text-primary)" letterSpacing="0.02em">research</text>
+          <text x="360" y="62" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="15"
+                fontWeight="500" fill="var(--color-text-primary)" letterSpacing="0.02em">testing</text>
+          <text x="610" y="62" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="15"
+                fontWeight="500" fill="var(--color-text-primary)" letterSpacing="0.02em">review</text>
+
+          {/* Sublabels */}
+          <text x="110" y="110" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="11"
+                fill="var(--color-text-muted)">shortlist</text>
+          <text x="360" y="110" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="11"
+                fill="var(--color-text-muted)">47+ cycles</text>
+          <text x="610" y="110" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="11"
+                fill="var(--color-text-muted)">verdict</text>
+
+          {/* Arrows */}
+          <g stroke="var(--color-accent)" strokeWidth="1.5" fill="var(--color-accent)">
+            <line x1="208" y1="55" x2="258" y2="55" />
+            <polygon points="258,49 268,55 258,61" />
+            <line x1="458" y1="55" x2="508" y2="55" />
+            <polygon points="508,49 518,55 508,61" />
+          </g>
+        </svg>
       </section>
 
       {/* Topics */}
