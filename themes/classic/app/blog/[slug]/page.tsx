@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
     dateModified: post.lastModified || post.date,
     publisher: {
       '@type': 'Organization',
-      name: 'Site Title',
+      name: 'Gear Lab',
       logo: {
         '@type': 'ImageObject',
         url: 'https://gearlab.space/logo.png',

@@ -1,0 +1,16 @@
+{
+  "default": "gearlab",
+  "variants": {
+    "gearlab": {
+      "label": "Cream (Gear Lab)",
+      "primary": "#ff6b35",
+      "primaryDark": "#e55a2b",
+      "dark": "#1f1b16",
+      "darkSurface": "#2a241d",
+      "bg": "#f5f0e5",
+      "surface": "#faf6ec",
+      "border": "#d6cfc2",
+      "muted": "#6b6155"
+    }
+  }
+}

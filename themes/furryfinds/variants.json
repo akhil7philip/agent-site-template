@@ -1,0 +1,13 @@
+{
+  "default": "default",
+  "variants": {
+    "default": {
+      "label": "Furry Finds (live)",
+      "primary": "#f39c12",
+      "primaryDark": "#e67e22",
+      "dark": "#2d3436",
+      "darkSurface": "#1f2937",
+      "bg": "#fef9f3"
+    }
+  }
+}

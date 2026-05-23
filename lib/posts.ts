@@ -91,5 +91,8 @@ export function getPostsByTag(tag: string): Post[] {
 
 export async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark().use(remarkGfm).use(remarkHtml).process(markdown)
-  return result.toString()
+  const html = result.toString()
+  // The post page renders the title as <h1> from metadata. Strip a leading
+  // <h1> in the markdown HTML so the same heading doesn't appear twice.
+  return html.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
 }

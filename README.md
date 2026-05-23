@@ -184,6 +184,35 @@ If the article appears at `https://your-domain.vercel.app/blog/test-article/`, y
 
 ---
 
+## Themes
+
+The template ships with reusable visual themes under `themes/`. Each theme
+provides a Tailwind config and `globals.css`; components stay untouched and
+re-skin via tokens.
+
+| Theme         | Variants    | Look                                                |
+|---------------|-------------|-----------------------------------------------------|
+| `classic`     | `blue`      | Inter sans-serif on white. Generic starting point.  |
+| `turbopuffer` | `gearlab`   | Cream parchment + serif headlines (Newsreader) + JetBrains Mono. Default for the Gear Lab brand. Inspired by turbopuffer.com. |
+| `furryfinds`  | `default`   | Cream bg + Inter body + Nunito display headings + amber accent. Faithful reproduction of furryfinds.club. |
+
+Pick a theme when scaffolding a new site:
+
+```bash
+node scripts/create-site.js --theme turbopuffer            # gearlab variant by default
+node scripts/create-site.js --theme furryfinds             # furryfinds.club look
+```
+
+Or re-skin an existing site:
+
+```bash
+npm run apply-theme -- --list
+npm run apply-theme -- --theme turbopuffer
+npm run apply-theme -- --theme furryfinds --dir ../my-site
+```
+
+See `themes/README.md` for the full spec and how to add new themes.
+
 ## Project Structure
 
 ```

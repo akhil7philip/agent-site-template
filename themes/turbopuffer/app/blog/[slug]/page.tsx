@@ -49,56 +49,35 @@ export default async function BlogPostPage({ params }: Props) {
 
   const contentHtml = await markdownToHtml(post.content)
 
-  // JSON-LD Article Schema
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-    },
+    author: { '@type': 'Person', name: post.author },
     datePublished: post.date,
     dateModified: post.lastModified || post.date,
     publisher: {
       '@type': 'Organization',
-      name: 'Site Title',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://gearlab.space/logo.png',
-      },
+      name: 'Gear Lab',
+      logo: { '@type': 'ImageObject', url: 'https://gearlab.space/logo.png' },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://gearlab.space/blog/${slug}/`,
     },
     ...(post.coverImage && {
-      image: {
-        '@type': 'ImageObject',
-        url: post.coverImage,
-      },
+      image: { '@type': 'ImageObject', url: post.coverImage },
     }),
     keywords: post.keywords?.join(', ') || post.tags.join(', '),
   }
 
-  // Breadcrumb Schema
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://gearlab.space/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: post.title,
-        item: `https://gearlab.space/blog/${slug}/`,
-      },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gearlab.space/' },
+      { '@type': 'ListItem', position: 2, name: post.title, item: `https://gearlab.space/blog/${slug}/` },
     ],
   }
 
@@ -113,47 +92,45 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2">
-            <li><a href="/" className="hover:text-primary">Home</a></li>
-            <li>/</li>
-            <li><a href="/blog/" className="hover:text-primary">Guides</a></li>
-          </ol>
+      <article className="max-w-2xl mx-auto px-6 py-16">
+        {/* Back link */}
+        <nav className="mb-12" aria-label="Breadcrumb">
+          <a
+            href="/blog/"
+            className="font-mono text-xs text-gray-500 hover:text-primary transition-colors"
+          >
+            ← all guides
+          </a>
         </nav>
 
         {/* Header */}
-        <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-dark tracking-tight mb-4">
+        <header className="mb-12">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gray-500 mb-5">
+            {post.category || 'guide'}
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl font-semibold text-dark tracking-tight mb-6 leading-[1.1]">
             {post.title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+          <div className="font-mono text-xs text-gray-500 flex flex-wrap gap-x-4 gap-y-1">
+            <time dateTime={post.date} className="tabular-nums">
+              {new Date(post.date).toISOString().slice(0, 10)}
             </time>
-            <span>&middot;</span>
-            <span>{post.author}</span>
-            {post.category && (
+            <span className="text-gray-300">·</span>
+            <span>by {post.author}</span>
+            {post.tags.length > 0 && (
               <>
-                <span>&middot;</span>
-                <span className="text-primary font-medium">{post.category}</span>
+                <span className="text-gray-300">·</span>
+                <span>
+                  {post.tags.slice(0, 4).map((tag, i) => (
+                    <span key={tag}>
+                      {tag}
+                      {i < Math.min(post.tags.length, 4) - 1 && <span className="text-gray-300 mx-1">,</span>}
+                    </span>
+                  ))}
+                </span>
               </>
             )}
           </div>
-          {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {post.tags.map((tag) => (
-                <span key={tag} className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </header>
 
         {/* Content */}
@@ -162,19 +139,16 @@ export default async function BlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
-        {/* Affiliate Disclosure */}
-        <div className="affiliate-disclosure mt-10">
-          Disclosure: This article contains affiliate links. We independently research and test products.
-          When you purchase through our links, we may earn a commission at no extra cost to you.
-          This supports our work and helps us continue providing detailed reviews and comparisons.
+        {/* Affiliate disclosure */}
+        <div className="affiliate-disclosure mt-16">
+          contains affiliate links — we independently research and test products.
+          when you purchase through our links, we may earn a commission at no
+          extra cost to you.
         </div>
 
-        {/* Last Updated */}
         {post.lastModified && post.lastModified !== post.date && (
-          <p className="text-xs text-gray-400 mt-6">
-            Last updated: {new Date(post.lastModified).toLocaleDateString('en-US', {
-              year: 'numeric', month: 'long', day: 'numeric'
-            })}
+          <p className="font-mono text-xs text-gray-400 mt-8 tabular-nums">
+            last updated · {new Date(post.lastModified).toISOString().slice(0, 10)}
           </p>
         )}
       </article>

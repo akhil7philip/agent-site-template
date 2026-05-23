@@ -1,0 +1,12 @@
+{
+  "default": "blue",
+  "variants": {
+    "blue": {
+      "label": "Blue (generic)",
+      "primary": "#2563eb",
+      "primaryDark": "#1d4ed8",
+      "dark": "#0f172a",
+      "darkSurface": "#1e293b"
+    }
+  }
+}

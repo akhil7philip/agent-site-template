@@ -1,0 +1,93 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '{{primary}}',
+        'primary-dark': '{{primaryDark}}',
+        dark: '{{dark}}',
+        'dark-surface': '{{darkSurface}}',
+        // Remap "white" so existing bg-white classes paint the cream page background.
+        white: '{{bg}}',
+        // Warm parchment greyscale — overrides default Tailwind gray.* so all
+        // pre-existing gray-* classes throughout the components adapt automatically.
+        gray: {
+          50: '{{surface}}',
+          100: '#efe9db',
+          200: '{{border}}',
+          300: '#c7bfae',
+          400: '#9c9384',
+          500: '{{muted}}',
+          600: '#544c41',
+          700: '#3f372e',
+          800: '#2a241d',
+          900: '{{dark}}',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Newsreader', 'ui-serif', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.800'),
+            maxWidth: 'none',
+            h1: {
+              fontFamily: theme('fontFamily.serif').join(', '),
+              fontWeight: '600',
+              letterSpacing: '-0.02em',
+            },
+            h2: {
+              fontFamily: theme('fontFamily.serif').join(', '),
+              fontWeight: '600',
+              letterSpacing: '-0.015em',
+              marginTop: '2em',
+            },
+            h3: {
+              fontFamily: theme('fontFamily.serif').join(', '),
+              fontWeight: '600',
+              marginTop: '1.5em',
+            },
+            a: {
+              color: theme('colors.primary'),
+              textDecoration: 'underline',
+              textDecorationColor: theme('colors.gray.300'),
+              textUnderlineOffset: '3px',
+            },
+            'a:hover': { textDecorationColor: theme('colors.primary') },
+            code: {
+              backgroundColor: theme('colors.gray.100'),
+              padding: '0.15em 0.35em',
+              borderRadius: '0.2em',
+              fontSize: '0.9em',
+              fontFamily: theme('fontFamily.mono').join(', '),
+              fontWeight: '400',
+            },
+            pre: {
+              backgroundColor: theme('colors.gray.900'),
+              color: theme('colors.gray.50'),
+              padding: '1em',
+              borderRadius: '0.25em',
+              overflow: 'auto',
+              fontFamily: theme('fontFamily.mono').join(', '),
+            },
+            blockquote: {
+              fontStyle: 'italic',
+              borderLeftColor: theme('colors.gray.300'),
+              color: theme('colors.gray.700'),
+            },
+          },
+        },
+      }),
+    },
+  },
+  plugins: [require('@tailwindcss/typography')],
+}
+export default config

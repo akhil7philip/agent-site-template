@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "create-site": "node scripts/create-site.js"
+    "create-site": "node scripts/create-site.js",
+    "apply-theme": "node scripts/apply-theme.js"
   },
   "dependencies": {
     "date-fns": "^4.0.0",
