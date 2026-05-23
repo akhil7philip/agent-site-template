@@ -48,9 +48,8 @@ export const metadata: Metadata = {
 
 const themeScript = `
   (function() {
-    const stored = localStorage.getItem('site-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored || (prefersDark ? 'dark' : 'light');
+    // Default to light; honour explicit user toggle stored in localStorage.
+    const theme = localStorage.getItem('site-theme') || 'light';
     document.documentElement.setAttribute('data-theme', theme);
   })();
 `;
